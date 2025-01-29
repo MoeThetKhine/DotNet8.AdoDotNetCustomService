@@ -1,7 +1,6 @@
-﻿namespace DotNet8.AdoDotNetCustomService
+﻿namespace DotNet8.AdoDotNetCustomService;
+
+public class CustomException : Exception
 {
-	public class CustomException : Exception
-	{
-		public CustomException(string? message) : base(message) { }
-	}
+	public CustomException(string? message) : base(message) { }
 }
