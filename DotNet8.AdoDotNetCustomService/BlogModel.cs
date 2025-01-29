@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DotNet8.AdoDotNetCustomService
+﻿namespace DotNet8.AdoDotNetCustomService
 {
 	public class BlogModel
 	{
