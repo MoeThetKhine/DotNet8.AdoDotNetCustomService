@@ -15,5 +15,9 @@ namespace DotNet8.AdoDotNetCustomService
       ,[BlogContent]
       ,[DeleteFlag]
   FROM [dbo].[Tbl_Blog] ORDER BY BlogId DESC";
+
+		public static string CreateBlogQuery { get; } =
+	   @"INSERT INTO Tbl_Blog (BlogTitle, BlogAuthor, BlogContent)
+VALUES(@BlogTitle, @BlogAuthor, @BlogContent)";
 	}
 }
