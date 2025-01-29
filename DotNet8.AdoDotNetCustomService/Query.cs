@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DotNet8.AdoDotNetCustomService
 {
-	internal class Query
+	public class Query
 	{
 	}
 }
