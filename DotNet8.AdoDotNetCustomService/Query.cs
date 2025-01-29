@@ -1,17 +1,16 @@
-﻿namespace DotNet8.AdoDotNetCustomService
+﻿namespace DotNet8.AdoDotNetCustomService;
+
+public class Query
 {
-	public class Query
-	{
-		public static string GetAllBlogsQuery { get; } =
-			@"SELECT [BlogId]
+	public static string GetAllBlogsQuery { get; } =
+		@"SELECT [BlogId]
       ,[BlogTitle]
       ,[BlogAuthor]
       ,[BlogContent]
       ,[DeleteFlag]
   FROM [dbo].[Tbl_Blog] ORDER BY BlogId DESC";
 
-		public static string CreateBlogQuery { get; } =
-	   @"INSERT INTO Tbl_Blog (BlogTitle, BlogAuthor, BlogContent)
+	public static string CreateBlogQuery { get; } =
+   @"INSERT INTO Tbl_Blog (BlogTitle, BlogAuthor, BlogContent)
 VALUES(@BlogTitle, @BlogAuthor, @BlogContent)";
-	}
 }
