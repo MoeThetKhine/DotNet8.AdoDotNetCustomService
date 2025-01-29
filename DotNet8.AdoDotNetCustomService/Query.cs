@@ -2,6 +2,9 @@
 
 public class Query
 {
+
+	#region GetAllBlogsQuery
+
 	public static string GetAllBlogsQuery { get; } =
 		@"SELECT [BlogId]
       ,[BlogTitle]
@@ -9,6 +12,8 @@ public class Query
       ,[BlogContent]
       ,[DeleteFlag]
   FROM [dbo].[Tbl_Blog] ORDER BY BlogId DESC";
+
+	#endregion
 
 	public static string CreateBlogQuery { get; } =
    @"INSERT INTO Tbl_Blog (BlogTitle, BlogAuthor, BlogContent)
