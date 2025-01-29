@@ -1,5 +1,7 @@
 ﻿namespace DotNet8.AdoDotNetCustomService;
 
+#region Query
+
 public class Query
 {
 
@@ -23,3 +25,5 @@ VALUES(@BlogTitle, @BlogAuthor, @BlogContent)";
 
 	#endregion
 }
+
+#endregion
