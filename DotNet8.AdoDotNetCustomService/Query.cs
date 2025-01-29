@@ -15,7 +15,11 @@ public class Query
 
 	#endregion
 
+	#region CreateBlogQuery
+
 	public static string CreateBlogQuery { get; } =
    @"INSERT INTO Tbl_Blog (BlogTitle, BlogAuthor, BlogContent)
 VALUES(@BlogTitle, @BlogAuthor, @BlogContent)";
+
+	#endregion
 }
