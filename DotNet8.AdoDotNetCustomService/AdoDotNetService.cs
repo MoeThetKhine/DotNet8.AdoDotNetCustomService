@@ -5,6 +5,8 @@
 		public readonly string _connStr =
 			$"Data Source={Environment.GetEnvironmentVariable("DataSource")};Database={Environment.GetEnvironmentVariable("Database")};User ID={Environment.GetEnvironmentVariable("UserID")};Password={Environment.GetEnvironmentVariable("Password")};TrustServerCertificate=True;";
 
+		#region QueryAsync
+
 		public async Task<List<T>> QueryAsync<T>(string query, SqlParameter[]? parameters = null, SqlTransaction? transaction = null)
 		{
 			SqlConnection conn = GetConnection();
@@ -24,6 +26,8 @@
 
 			return lst;
 		}
+
+		#endregion
 
 		public async Task<DataTable> QueryFirstOrDefaultAsync(string query, SqlParameter[]? parameters = null, SqlTransaction? transaction = null)
 		{
