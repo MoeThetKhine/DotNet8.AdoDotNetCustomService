@@ -25,11 +25,7 @@
 			return lst;
 		}
 
-		public async Task<DataTable> QueryFirstOrDefaultAsync(
-			string query,
-			SqlParameter[]? parameters = null,
-			SqlTransaction? transaction = null
-		)
+		public async Task<DataTable> QueryFirstOrDefaultAsync(string query, SqlParameter[]? parameters = null, SqlTransaction? transaction = null)
 		{
 			SqlConnection conn = GetConnection();
 			await conn.OpenAsync();
