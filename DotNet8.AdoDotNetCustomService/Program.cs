@@ -10,6 +10,7 @@ public class Program
 		await Read();
 		await Create("Sample Title", "Sample Author", "Sample Content", false);
 		await Update(1, "Updated Title", "Updated Author", "Updated Content");
+		await Delete(1);
 
 	}
 
