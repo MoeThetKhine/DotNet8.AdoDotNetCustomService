@@ -68,6 +68,8 @@ public class Program
 
 	#endregion
 
+	#region Update
+
 	public static async Task Update(long blogId, string blogTitle, string blogAuthor, string blogContent)
 	{
 		try
@@ -92,5 +94,7 @@ public class Program
 			Console.WriteLine($"Error creating blog: {ex.Message}");
 		}
 	}
+
+	#endregion
 
 }
