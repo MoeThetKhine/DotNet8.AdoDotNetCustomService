@@ -10,6 +10,8 @@ public class Program
 		await Create("Sample Title", "Sample Author", "Sample Content");
 	}
 
+	#region Read
+
 	public static async Task Read()
 	{
 		try
@@ -31,6 +33,8 @@ public class Program
 			throw new CustomException(ex.Message);
 		}
 	}
+
+	#endregion
 
 	public static async Task Create(string blogTitle, string blogAuthor, string blogContent)
 	{
