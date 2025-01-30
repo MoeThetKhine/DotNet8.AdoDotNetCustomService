@@ -20,9 +20,17 @@ public class Query
 	#region CreateBlogQuery
 
 	public static string CreateBlogQuery { get; } =
-		"INSERT INTO dbo.Tbl_Blog (BlogTitle, BlogAuthor, BlogContent, DeleteFlag) VALUES (@BlogTitle, @BlogAuthor, @BlogContent, @DeleteFlag);"; 
+		"INSERT INTO dbo.Tbl_Blog (BlogTitle, BlogAuthor, BlogContent, DeleteFlag) VALUES (@BlogTitle, @BlogAuthor, @BlogContent, @DeleteFlag);";
 
 	#endregion
+
+	public static string UpdateBlogQuery { get; } =
+		@"UPDATE dbo.Tbl_Blog 
+	  SET BlogTitle = @BlogTitle, 
+	      BlogAuthor = @BlogAuthor, 
+	      BlogContent = @BlogContent 
+	  WHERE BlogId = @BlogId";
+
 }
 
 #endregion
