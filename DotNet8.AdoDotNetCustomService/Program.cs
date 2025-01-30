@@ -68,4 +68,29 @@ public class Program
 
 	#endregion
 
+	public static async Task Update(long blogId, string blogTitle, string blogAuthor, string blogContent)
+	{
+		try
+		{
+			AdoDotNetService adoDotNetService = new();
+			string query = Query.UpdateBlogQuery;
+			List<SqlParameter> parameters = new()
+			{
+				new("@BlogId" , blogId),
+				new("@BlogTitle" , blogTitle),
+				new("@BlogAuthor" , blogAuthor),
+				new("@BlogContent" , blogContent)
+			};
+
+			int result = await adoDotNetService.ExecuteAsync(query, parameters.ToArray());
+
+			Console.WriteLine(result > 0 ? "Update Successful." : "Update Failed.");
+
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Error creating blog: {ex.Message}");
+		}
+	}
+
 }
