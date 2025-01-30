@@ -42,11 +42,7 @@
 			return dt;
 		}
 
-		public async Task<int> ExecuteAsync(
-			string query,
-			SqlParameter[]? parameters = null,
-			SqlTransaction? transaction = null
-		)
+		public async Task<int> ExecuteAsync(string query, SqlParameter[]? parameters = null, SqlTransaction? transaction = null)
 		{
 			SqlConnection conn = GetConnection();
 			await conn.OpenAsync();
