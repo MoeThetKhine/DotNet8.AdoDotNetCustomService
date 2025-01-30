@@ -29,6 +29,8 @@
 
 		#endregion
 
+		#region QueryFirstOrDefaultAsync
+
 		public async Task<DataTable> QueryFirstOrDefaultAsync(string query, SqlParameter[]? parameters = null, SqlTransaction? transaction = null)
 		{
 			SqlConnection conn = GetConnection();
@@ -45,6 +47,8 @@
 
 			return dt;
 		}
+
+		#endregion
 
 		public async Task<int> ExecuteAsync(string query, SqlParameter[]? parameters = null, SqlTransaction? transaction = null)
 		{
