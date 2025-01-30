@@ -99,6 +99,8 @@ public class Program
 
 	#endregion
 
+	#region Delete
+
 	public static async Task Delete(int blogId)
 	{
 		try
@@ -119,6 +121,7 @@ public class Program
 		{
 			Console.WriteLine($"Error creating blog: {ex.Message}");
 		}
-
 	}
+
+	#endregion
 }
