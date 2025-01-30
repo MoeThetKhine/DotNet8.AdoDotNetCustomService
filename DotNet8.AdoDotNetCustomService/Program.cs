@@ -47,9 +47,7 @@ public class Program
 		{
 			AdoDotNetService adoDotNetService = new();
 
-			string query = "INSERT INTO dbo.Tbl_Blog (BlogTitle, BlogAuthor, BlogContent, DeleteFlag) " +
-						   "VALUES (@BlogTitle, @BlogAuthor, @BlogContent, @DeleteFlag);"; // <-- Ensure DeleteFlag is here
-
+			string query =  Query.CreateBlogQuery;
 			List<SqlParameter> parameters = new()
 			{
 				new("@BlogTitle", blogTitle),
