@@ -9,7 +9,7 @@ public class Program
 		DotNetEnv.Env.Load(".env");
 
 		await Read();
-		//await Create("Sample Title", "Sample Author", "Sample Content");
+		await Create("Sample Title", "Sample Author", "Sample Content");
 	}
 
 	public static async Task Read()
