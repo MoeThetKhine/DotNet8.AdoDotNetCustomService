@@ -2,6 +2,8 @@
 
 public class Program
 {
+	#region Main
+
 	public static async Task Main(string[] args)
 	{
 		DotNetEnv.Env.Load(".env");
@@ -9,6 +11,8 @@ public class Program
 		await Read();
 		await Create("Sample Title", "Sample Author", "Sample Content");
 	}
+
+	#endregion
 
 	#region Read
 
