@@ -24,12 +24,16 @@ public class Query
 
 	#endregion
 
+	#region UpdateBlogQuery
+
 	public static string UpdateBlogQuery { get; } =
 		@"UPDATE dbo.Tbl_Blog 
 	  SET BlogTitle = @BlogTitle, 
 	      BlogAuthor = @BlogAuthor, 
 	      BlogContent = @BlogContent 
 	  WHERE BlogId = @BlogId";
+
+	#endregion
 
 	public static string DeleteBlogQuery { get; } =
 		@"UPDATE dbo.Tbl_Blog 
