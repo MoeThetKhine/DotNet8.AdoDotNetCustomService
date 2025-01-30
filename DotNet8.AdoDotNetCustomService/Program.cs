@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
-
-namespace DotNet8.AdoDotNetCustomService
+﻿namespace DotNet8.AdoDotNetCustomService
 {
 	public class Program
 	{
@@ -19,12 +14,13 @@ namespace DotNet8.AdoDotNetCustomService
 		#endregion
 
 		#region Read
+
 		public static async Task Read()
 		{
 			try
 			{
 				AdoDotNetService adoDotNetService = new();
-				string query = Query.GetAllBlogsQuery;  // Ensure this is defined correctly
+				string query = Query.GetAllBlogsQuery;  
 				List<BlogModel> lst = await adoDotNetService.QueryAsync<BlogModel>(query);
 
 				foreach (var item in lst)
@@ -35,11 +31,12 @@ namespace DotNet8.AdoDotNetCustomService
 					Console.WriteLine($"Blog Content: {item.BlogContent}");
 				}
 			}
-			catch (Exception ex)  // Catch general exception instead of rethrowing
+			catch (Exception ex)  
 			{
 				Console.WriteLine($"Error reading data: {ex.Message}");
 			}
 		}
+
 		#endregion
 
 		#region Create
