@@ -99,11 +99,7 @@ public class Program
 
 	#endregion
 
-	public static string DeleteBlogQuery { get; } =
-		@"UPDATE dbo.Tbl_Blog 
-		  SET DeleteFlag = 1 
-		  WHERE BlogId = @BlogId";
-
+	
 
 
 }
