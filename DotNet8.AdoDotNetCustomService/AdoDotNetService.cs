@@ -53,6 +53,23 @@ namespace DotNet8.AdoDotNetCustomService
 
 		}
 
+		public async Task<int> ExecuteAsync(string query, SqlParameter[]? parameters = null, SqlTransaction? transaction = null)
+		{
+			SqlConnection conn = GetConnection();
+			await conn.OpenAsync();
+			SqlCommand cmd = new(query, conn, transaction);
+			if (parameters is not null)
+			{
+				cmd.Parameters.AddRange(parameters);
+			}
+
+			int result = await cmd.ExecuteNonQueryAsync();
+			await conn.CloseAsync();
+
+			return result;
+
+		}
+
 		private SqlConnection GetConnection() => new(_connStr);
 	}
 
