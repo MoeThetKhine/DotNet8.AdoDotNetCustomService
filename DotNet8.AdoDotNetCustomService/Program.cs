@@ -99,7 +99,26 @@ public class Program
 
 	#endregion
 
-	
+	public static async Task Delete(int blogId)
+	{
+		try
+		{
+			AdoDotNetService adoDotNetService = new();
+			string query = Query.DeleteBlogQuery;
 
+			List<SqlParameter> parameters = new()
+			{
+				new("@BlogId", blogId)
+			};
 
+			int result = await adoDotNetService.ExecuteAsync(query, parameters.ToArray());
+
+			Console.WriteLine(result > 0 ? "Deleting Successful." : "Deleting Failed.");
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Error creating blog: {ex.Message}");
+		}
+
+	}
 }
