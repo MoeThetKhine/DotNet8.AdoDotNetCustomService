@@ -1,70 +1,76 @@
-﻿namespace DotNet8.AdoDotNetCustomService;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 
-public class Program
+namespace DotNet8.AdoDotNetCustomService
 {
-	#region Main
-
-	public static async Task Main(string[] args)
+	public class Program
 	{
-		DotNetEnv.Env.Load(".env");
 
-		await Read();
-		await Create("Sample Title", "Sample Author", "Sample Content");
-	}
+		#region Main
 
-	#endregion
-
-	#region Read
-
-	public static async Task Read()
-	{
-		try
+		public static async Task Main(string[] args)
 		{
-			AdoDotNetService adoDotNetService = new();
-			string query = Query.GetAllBlogsQuery;
-			List<BlogModel> lst = await adoDotNetService.QueryAsync<BlogModel>(query);
+			await Read();
+			await Create("Sample Title", "Sample Author", "Sample Content", false);
+		}
 
-			foreach (var item in lst)
+		#endregion
+
+		#region Read
+		public static async Task Read()
+		{
+			try
 			{
-				Console.WriteLine($"Blog Id: {item.BlogId}");
-				Console.WriteLine($"Blog Title: {item.BlogTitle}");
-				Console.WriteLine($"Blog Author: {item.BlogAuthor}");
-				Console.WriteLine($"Blog Content: {item.BlogContent}");
+				AdoDotNetService adoDotNetService = new();
+				string query = Query.GetAllBlogsQuery;  // Ensure this is defined correctly
+				List<BlogModel> lst = await adoDotNetService.QueryAsync<BlogModel>(query);
+
+				foreach (var item in lst)
+				{
+					Console.WriteLine($"Blog Id: {item.BlogId}");
+					Console.WriteLine($"Blog Title: {item.BlogTitle}");
+					Console.WriteLine($"Blog Author: {item.BlogAuthor}");
+					Console.WriteLine($"Blog Content: {item.BlogContent}");
+				}
+			}
+			catch (Exception ex)  // Catch general exception instead of rethrowing
+			{
+				Console.WriteLine($"Error reading data: {ex.Message}");
 			}
 		}
-		catch (CustomException ex)
+		#endregion
+
+		#region Create
+		public static async Task Create(string blogTitle, string blogAuthor, string blogContent, bool deleteFlag)
 		{
-			throw new CustomException(ex.Message);
+			try
+			{
+				AdoDotNetService adoDotNetService = new();
+
+				// Make sure the SQL query includes `DeleteFlag`
+				string query = "INSERT INTO dbo.Tbl_Blog (BlogTitle, BlogAuthor, BlogContent, DeleteFlag) " +
+							   "VALUES (@BlogTitle, @BlogAuthor, @BlogContent, @DeleteFlag);"; // <-- Ensure DeleteFlag is here
+
+				List<SqlParameter> parameters = new()
+		{
+			new("@BlogTitle", blogTitle),
+			new("@BlogAuthor", blogAuthor),
+			new("@BlogContent", blogContent),
+			new("@DeleteFlag", deleteFlag)  // Ensure DeleteFlag is explicitly passed
+		};
+
+				int result = await adoDotNetService.ExecuteAsync(query, parameters.ToArray());
+
+				Console.WriteLine(result > 0 ? "Saving Successful." : "Saving Failed.");
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error creating blog: {ex.Message}");
+			}
 		}
+
+		#endregion
 	}
-
-	#endregion
-
-	#region Create
-
-	public static async Task Create(string blogTitle, string blogAuthor, string blogContent)
-	{
-		try
-		{
-			AdoDotNetService adoDotNetService = new();
-			string query = Query.CreateBlogQuery;
-			List<SqlParameter> parameters =
-				new()
-				{
-					new("@BlogTitle", blogTitle),
-					new("@BlogAuthor", blogAuthor),
-					new("@BlogContent", blogContent)
-				};
-			int result = await adoDotNetService.ExecuteAsync(query, parameters.ToArray());
-
-			Console.WriteLine(result > 0 ? "Saving Successful." : "Saving Fail.");
-		}
-		catch (CustomException ex)
-		{
-			throw new CustomException(ex.Message);
-		}
-	}
-
-	#endregion
-
 }
