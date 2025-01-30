@@ -36,6 +36,8 @@ public class Program
 
 	#endregion
 
+	#region Create
+
 	public static async Task Create(string blogTitle, string blogAuthor, string blogContent)
 	{
 		try
@@ -58,4 +60,7 @@ public class Program
 			throw new CustomException(ex.Message);
 		}
 	}
+
+	#endregion
+
 }
