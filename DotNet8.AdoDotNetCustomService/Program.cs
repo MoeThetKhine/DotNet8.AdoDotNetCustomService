@@ -40,23 +40,23 @@
 		#endregion
 
 		#region Create
+
 		public static async Task Create(string blogTitle, string blogAuthor, string blogContent, bool deleteFlag)
 		{
 			try
 			{
 				AdoDotNetService adoDotNetService = new();
 
-				// Make sure the SQL query includes `DeleteFlag`
 				string query = "INSERT INTO dbo.Tbl_Blog (BlogTitle, BlogAuthor, BlogContent, DeleteFlag) " +
 							   "VALUES (@BlogTitle, @BlogAuthor, @BlogContent, @DeleteFlag);"; // <-- Ensure DeleteFlag is here
 
 				List<SqlParameter> parameters = new()
-		{
-			new("@BlogTitle", blogTitle),
-			new("@BlogAuthor", blogAuthor),
-			new("@BlogContent", blogContent),
-			new("@DeleteFlag", deleteFlag)  // Ensure DeleteFlag is explicitly passed
-		};
+				{
+					new("@BlogTitle", blogTitle),
+					new("@BlogAuthor", blogAuthor),
+					new("@BlogContent", blogContent),
+					new("@DeleteFlag", deleteFlag)  
+				};
 
 				int result = await adoDotNetService.ExecuteAsync(query, parameters.ToArray());
 
